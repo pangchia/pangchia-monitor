@@ -8,7 +8,6 @@ pangchia monitor bla bla bla
 * grafana (v8.2.2)   
 * influxdb (v1.8.10)
 * telegraf (v1.20.3)
-* mysql (v8.0.17)
 
 ### 可能使用到的cmd工具
 * curl
@@ -29,7 +28,6 @@ pangchia monitor bla bla bla
 * grafana: [官方文档](https://grafana.com/docs/grafana/latest/)
 * influxdb: [官方文档](https://docs.influxdata.com/influxdb/v2.1/)
 * telegraf: [官方文档](https://docs.influxdata.com/telegraf/v1.20/)
-* mysql: [官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
 
 
@@ -83,18 +81,6 @@ root      326059  324290  0 18:21 pts/0    00:00:00 grep --color=auto telegraf
 
 
 ---
-## mysql
-##### 确认启动、停止是否正常
-systemctl start mysql
-systemctl stop mysql
-
-启动后查看进程
-```
-root@x99-wells-2678-192:/usr/local/src# ps -ef |grep mysql
-root        1276       1  0 11月21 ?      00:00:00 /bin/sh /usr/local/mysql/bin/mysqld_safe --datadir=/usr/local/mysql/data --pid-file=/tmp/mysql.pid
-mysql       1590    1276  0 11月21 ?      00:38:04 /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysq/data --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/usr/local/mysql/data/mysql-error.log --pid-file=/tmp/mysql.pid --socket=/tmp/mysql.sock --port=3306
-root      326158  324290  0 18:23 pts/0    00:00:00 grep --color=auto mysql
-```
 
 
 
@@ -105,25 +91,112 @@ root      326158  324290  0 18:23 pts/0    00:00:00 grep --color=auto mysql
 
 ## grafana
 
-默认配置文件: /etc/grafana/grafana.ini
+安装后默认配置文件: /etc/grafana/grafana.ini
 默认log: /var/log/grafana/grafana.log
 
 grafana默认3000端口，使用 http://你机器的IP:3000/
 比如:http://192.168.3.14:3000/
 
-可以使用默认配置，登录用户名与密码为  admin  admin
+安装后默认配置，登录用户名与密码为  admin  admin
+grafana.ini中其他配置项应该不用改动
 
 
+--- 
 
 ## influxdb
 
+安装后默认配置文件: /etc/influxdb/influxdb.conf
+influxdb.conf中其他配置项应该不用改动
 
 
 ## telegraf
 
+安装后默认配置文件: /etc/telegraf/telegraf.conf
+
+日志过滤按照节点类型粗略残暴的分了两种  1.fullnode   2.harvester ，两种节点 telegraf.conf 配置略有不同
+
+老夫目前 fullnode使用windows ,harvester使用ubuntu  各位可以按照自己的情况自行调整
 
 
-## mysql
+使用文件夹中的telegraf.conf替换安装时默认的配置文件telegraf.conf
+
+---
+
+##### fullnode telegraf 配置
+
+fullnode: windows 如果没有默认 telegraf.conf 直接复制到 telegraf.exe 相同的文件夹
+运行:  C:/soft_setup/telegraf-1.20.3/telegraf.exe --config telegraf.conf
+
+工程中fullnode文件夹里telegraf.conf文件以下带有路径、IP的地方需要替换为你自己fullnode机器的路径、IP
+
+1. 
+```
+    logfile = "C:/soft_setup/telegraf-1.20.3/telegraf.log"
+```
+2.
+```
+    [[outputs.file]] 
+        files = ["C:/telegraf/metrics.out"]
+
+```
+3.
+```
+    [[outputs.influxdb]]
+
+        urls = ["http://192.168.3.14:8086"]
+
+```
+4.  chia debug.log 路径
+```
+[[inputs.tail]]
+
+  name_override = "chia_log_monitor"
+
+  files = ["C:/Users/Administrator/.chia/mainnet/log/debug.log"]
+
+```
 
 
 
+
+---
+
+##### harvester telegraf 配置
+
+harvester: 替换ubuntu原有的文件 /etc/telegraf/telegraf.conf
+systemctl start telegraf.service  启动是会找默认位置 /etc/telegraf/telegraf.conf
+
+工程中harvester文件夹里telegraf.conf文件以下带有路径、IP的地方需要替换为你自己harvester机器的路径、IP
+
+1.
+```
+logfile = "/var/log/telegraf/telegraf.log"
+
+```
+
+
+2.
+```
+
+[[outputs.file]]
+  files = ["/tmp/metrics.out"]
+
+```
+
+
+3.
+```
+
+
+[[outputs.influxdb]]
+
+  urls = ["http://192.168.3.14:8086"]
+
+```
+
+4. chia debug.log 路径
+```
+
+  files = ["/root/.chia/mainnet/log/debug.log"]
+
+```
