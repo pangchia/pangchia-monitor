@@ -172,14 +172,12 @@ pangchia monitor bla bla bla
 
     ```
 
-
     2.
     ```
     [[outputs.file]]
       files = ["/tmp/metrics.out"]
 
     ```
-
 
     3.
     ```
@@ -195,3 +193,11 @@ pangchia monitor bla bla bla
       files = ["/root/.chia/mainnet/log/debug.log"]
 
     ```
+  
+
+
+### 导入 
+
+导入grafana dashboard 配置文件 pangchia-monitor-dashboard.json
+
+点击 grafana主页左侧纵向导航条中 + 号  ->  import  -> upload json file -> 选择 pangchia-monitor-dashboard.json 
