@@ -15,7 +15,7 @@ pangchia monitor bla bla bla
 
 
 
-
+### 如果未尽说明，请通知我后续补充
 
 ### 下载与安装
 
@@ -29,7 +29,7 @@ pangchia monitor bla bla bla
 * grafana: [官方文档](https://grafana.com/docs/grafana/latest/)
 * influxdb: [官方文档](https://docs.influxdata.com/influxdb/v2.1/)
 * telegraf: [官方文档](https://docs.influxdata.com/telegraf/v1.20/)
-* mysql: 一搜索一大片
+* mysql: [官方文档](https://dev.mysql.com/doc/refman/8.0/en/)
 
 
 
@@ -100,3 +100,30 @@ root      326158  324290  0 18:23 pts/0    00:00:00 grep --color=auto mysql
 
 
 ## 配置
+
+---
+
+## grafana
+
+默认配置文件: /etc/grafana/grafana.ini
+默认log: /var/log/grafana/grafana.log
+
+grafana默认3000端口，使用 http://你机器的IP:3000/
+比如:http://192.168.3.14:3000/
+
+可以使用默认配置，登录用户名与密码为  admin  admin
+
+
+
+## influxdb
+
+
+
+## telegraf
+
+
+
+## mysql
+
+
+
