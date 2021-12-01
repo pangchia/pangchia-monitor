@@ -202,3 +202,6 @@ pangchia monitor bla bla bla
 
 
 ### ！！！ java app 请查看 java文件夹下文档
+
+
+### 完成全部部署后外观为 chia-monitor.png 
