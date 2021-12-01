@@ -29,7 +29,7 @@ pangchia monitor bla bla bla
 * telegraf: [官方文档](https://docs.influxdata.com/telegraf/v1.20/)
 
 
-## !!! 老夫目前 fullnode使用windows ,harvester使用ubuntu  各位可以按照自己的情况自行调整
+## ！！！ 老夫目前 fullnode使用windows ,harvester使用ubuntu  各位可以按照自己的情况自行调整
 
 ### ***启动***   
 (默认os选择ubuntu，windows环境路径有所差别，其他区别不大)
@@ -197,3 +197,8 @@ pangchia monitor bla bla bla
 导入grafana dashboard 配置文件 pangchia-monitor-dashboard.json
 
 点击 grafana主页左侧纵向导航条中 + 号  ->  import  -> upload json file -> 选择 pangchia-monitor-dashboard.json 
+
+
+
+
+### ！！！ java app 请查看 java文件夹下文档
