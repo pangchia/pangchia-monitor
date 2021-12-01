@@ -20,7 +20,6 @@ pangchia monitor bla bla bla
 
 * grafana: [下载与安装](https://grafana.com/docs/grafana/latest/installation/)
 * influxdb & telegraf (在同一页面): [下载与安装](https://portal.influxdata.com/downloads/)
-* mysql: [下载与安装](https://dev.mysql.com/downloads/mysql/)
 
 
 ### 官方文档
@@ -30,11 +29,10 @@ pangchia monitor bla bla bla
 * telegraf: [官方文档](https://docs.influxdata.com/telegraf/v1.20/)
 
 
+## !!! 老夫目前 fullnode使用windows ,harvester使用ubuntu  各位可以按照自己的情况自行调整
 
 ### ***启动***   
 (默认os选择ubuntu，windows环境路径有所差别，其他区别不大)
-
-
 
 + grafana
 
@@ -120,8 +118,6 @@ pangchia monitor bla bla bla
     A.fullnode   
     B.harvester 
     
-    老夫目前 fullnode使用windows ,harvester使用ubuntu  各位可以按照自己的情况自行调整
-
     使用文件夹中的telegraf.conf替换安装时默认的配置文件telegraf.conf
 
     A. fullnode telegraf 配置
